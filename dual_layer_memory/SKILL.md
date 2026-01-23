@@ -32,3 +32,16 @@ This skill forces the agent to utilize a file-based memory system (`memory/SHORT
 3.  **Strict Rules**:
     - Do not rely on conversation history for critical project details if they are not in the memory files.
     - The memory files are the Single Source of Truth (SSOT).
+    - **Privacy First**: The `memory/` folder MUST be git-ignored in the current workspace.
+
+4.  **Cloud Sync (Replication)**:
+    - **Objective**: Keep the local `memory/` folder in sync with the Private Data Repository.
+    - **Mechanism**:
+        - You cannot use `git push` directly on `memory/` because it is git-ignored locally.
+        - Instead, you must use the **GitHub API** (via `python script` or similar) to fetch/update the contents of `memory/SHORT_TERM.md` and `memory/LONG_TERM.md` in the `PRIVATE_DATA_REPO`.
+    - **Trigger**:
+        - **Pull**: On Session Start (if memory is empty).
+        - **Push**: On Session End (or Critical Milestone).
+    - **Implementation**:
+        - Use the `reporter_client.py` (which now supports file updates) or write a dedicated script to overwrite the remote memory files with local content.
+
