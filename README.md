@@ -14,3 +14,22 @@ Enables AI agents to report status to the central AI Command Center via GitHub A
 
 ## Installation
 Clone this repository and symlink the desired skills to your agent's `.agent/skills` directory.
+
+## 🕹️ Available Commands
+
+When these skills are installed, you can use the following commands or prompts:
+
+### 🧠 Dual Layer Memory
+**Implicit Behavior**: This skill is **always on**. The agent will automatically check `memory/` folder at startup.
+
+**Manual Triggers**:
+- **"Initialize Memory"**: Forces the creation of `memory/SHORT_TERM.md` and `LONG_TERM.md` if they don't exist.
+- **"Update Memory" or "Memorize"**: Forces the agent to explicitly write current progress to `SHORT_TERM.md`.
+- **"Learn Rule: [Rule]"**: Explicitly adds a new rule to `LONG_TERM.md`.
+
+### 📡 Command Center Reporter
+**Slash Command**:
+- `/report`: Triggers the agent to summarize current session and report it to the central Command Center.
+
+**Implicit Behavior**:
+- The agent may proactively report major milestones (e.g., "Feature 'Login' is complete") if instructed to do so.
