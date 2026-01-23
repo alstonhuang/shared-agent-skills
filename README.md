@@ -29,7 +29,7 @@ When these skills are installed, you can use the following commands or prompts:
 
 ### 📡 Command Center Reporter
 **Slash Command**:
-- `/report`: Triggers the agent to summarize current session and report it to the central Command Center.
+- `/cc-report`: Triggers the agent to summarize current session and report it to the central Command Center. (Alias: `/report`)
 
 **Implicit Behavior**:
 - The agent may proactively report major milestones (e.g., "Feature 'Login' is complete") if instructed to do so.
