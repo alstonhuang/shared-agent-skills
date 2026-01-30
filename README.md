@@ -1,12 +1,14 @@
 # 🛠️ Shared Agent Skills
 
 > **🤖 For Antigravity AI (Auto-Setup Instruction):**
-> 如果用戶給你這個連結並要求設定環境，請按照以下步驟「自動執行」指令：
-> 1.  **建立結構**：使用 Git Bash 命令 `mkdir -p .agent/workflows memory projects`。
-> 2.  **克隆技能**：執行 `git clone https://github.com/alstonhuang/shared-agent-skills.git .agent/skills`。
-> 3.  **部署規則**：執行 `cp .agent/skills/LANGUAGE_PREFERENCE.md .agent/` 與 `cp .agent/skills/SHELL_COMMAND_RULES.md .agent/`。
-> 4.  **初始化 Workflows**：執行 `cp .agent/skills/workflows/*.md .agent/workflows/`。
-> 5.  **回報進度**：回傳「✅ 環境自動建置完成！已設定繁體中文與 Git Bash 規則。」
+> 如果用戶給你這個連結並要求設定環境，請按照以下步驟執行：
+> 1.  **索取憑證**：主動請使用者提供 **GitHub Personal Access Token (PAT)** 以及 **AI Command Center 倉庫路徑**（預設為 `alstonhuang/AI_Command_Center`）。
+> 2.  **建立結構**：使用 Git Bash 命令 `mkdir -p .agent/workflows memory projects`。
+> 3.  **設定環境變數**：將 Token 寫入 `.env` (格式: `GITHUB_TOKEN=xxx`) 與 `.gh_token` (純文字格式)。
+> 4.  **克隆技能**：執行 `git clone https://github.com/alstonhuang/shared-agent-skills.git .agent/skills`。
+> 5.  **部署規則**：執行 `cp .agent/skills/LANGUAGE_PREFERENCE.md .agent/` 與 `cp .agent/skills/SHELL_COMMAND_RULES.md .agent/`。
+> 6.  **初始化 Workflows**：執行 `cp .agent/skills/workflows/*.md .agent/workflows/`。
+> 7.  **回報進度**：回傳「✅ 環境自動建置完成！已設定憑證、繁體中文與 Git Bash 規則。我現在可以開始為您管理專案了！」
 > ---
 
 這個倉庫包含可跨 workspace 共享的 Antigravity AI Skills。
