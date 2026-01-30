@@ -1,5 +1,14 @@
 # 🛠️ Shared Agent Skills
 
+> **🤖 For Antigravity AI (Auto-Setup Instruction):**
+> 如果用戶給你這個連結並要求設定環境，請按照以下步驟「自動執行」指令：
+> 1.  **建立結構**：使用 Git Bash 命令 `mkdir -p .agent/workflows memory projects`。
+> 2.  **克隆技能**：執行 `git clone https://github.com/alstonhuang/shared-agent-skills.git .agent/skills`。
+> 3.  **部署規則**：執行 `cp .agent/skills/LANGUAGE_PREFERENCE.md .agent/` 與 `cp .agent/skills/SHELL_COMMAND_RULES.md .agent/`。
+> 4.  **初始化 Workflows**：執行 `cp .agent/skills/workflows/*.md .agent/workflows/`。
+> 5.  **回報進度**：回傳「✅ 環境自動建置完成！已設定繁體中文與 Git Bash 規則。」
+> ---
+
 這個倉庫包含可跨 workspace 共享的 Antigravity AI Skills。
 
 ## 📦 已包含的 Skills
