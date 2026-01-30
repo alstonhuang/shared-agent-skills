@@ -43,10 +43,21 @@ reporter.update_status("YourProjectName", "🚧 Working")
 
 ✅ **完全支援 Windows, macOS, Linux**
 
-### Windows 使用者
-- 只需安裝 **Git for Windows**（內建 Git Bash）
+### ⚠️ Windows 使用者重要提示
+- ✅ **使用 Git Bash**（隨 Git for Windows 安裝）
+- ❌ **不要使用 PowerShell**（語法不相容）
 - ❌ **不需要** Cygwin 或 WSL
 - 所有腳本都能在 Git Bash 中執行
+
+**為什麼使用 Git Bash？**
+- ✅ 與 macOS/Linux 指令完全相容
+- ✅ 支援所有 bash 腳本和 Unix 工具
+- ✅ 跨平台統一，學一次到處用
+- ❌ PowerShell 語法不同（如 `Copy-Item` vs `cp`）
+
+**如何使用 Git Bash：**
+- 方法 1: 右鍵點選資料夾 → "Git Bash Here"
+- 方法 2: 開始選單搜尋 "Git Bash"
 
 ### 提供的腳本格式
 1. **Python 腳本**（推薦）- 完全跨平台
@@ -60,7 +71,8 @@ reporter.update_status("YourProjectName", "🚧 Working")
 ## 🚀 安裝方式
 
 ### 方法 1：在新 Workspace 使用 Git Clone
-```powershell
+```bash
+# 在 Git Bash (Windows) 或 Terminal (macOS/Linux) 執行
 cd /path/to/your/workspace
 mkdir -p .agent
 git clone https://github.com/alstonhuang/shared-agent-skills.git .agent/skills
