@@ -2,16 +2,19 @@
 
 > **🤖 For Antigravity AI (Auto-Setup Instruction):**
 > 如果用戶給你這個連結並要求設定環境，請按照以下步驟執行：
-> 1.  **環境診斷**：首先檢查 `git --version` 與 `python --version`。
->     -   如果缺少 **Git**：請回傳「❌ 偵測到缺少 Git。請安裝 Git for Windows (https://git-scm.com/) 並**重啟 VS Code** 後再叫我一次。」並停止。
+> 1.  **Workspace 確認**：首先顯示當前工作的絕對路徑，並詢問使用者：「我預計在此目錄建立 AI 環境，是否正確？」
+>     -   如果路徑看起來是系統暫存區或使用者未開啟資料夾，請引導使用者先在 VS Code 中「開啟一個選定的工作資料夾」。
+> 2.  **環境診斷**：確認路徑後，檢查 `git --version` 與 `python --version`。
+>     -   如果缺少 **Git**：請回傳「❌ 偵測到缺少 Git。請安裝 Git (https://git-scm.com/) 並**重啟 VS Code**。」並停止。
 >     -   如果缺少 **Python**：請回傳「❌ 偵測到缺少 Python。請安裝 Python (https://www.python.org/) 並勾選 "Add to PATH"。」並停止。
-> 2.  **索取憑證**：一切就緒後，請主動索取使用者的 **GitHub Token (PAT)** 與 **Command Center 倉庫路徑**。
-> 3.  **建立結構**：執行 Git Bash 命令 `mkdir -p .agent/workflows memory projects`。
-> 4.  **設定環境變數**：自動建立 `.env` 與 `.gh_token` 並寫入憑證。
-> 5.  **克隆技能**：執行 `git clone https://github.com/alstonhuang/shared-agent-skills.git .agent/skills`。
-> 6.  **部署規則**：執行 `cp .agent/skills/LANGUAGE_PREFERENCE.md .agent/` 與 `cp .agent/skills/SHELL_COMMAND_RULES.md .agent/`。
-> 7.  **初始化 Workflows**：執行 `cp .agent/skills/workflows/*.md .agent/workflows/`。
-> 8.  **回報進度**：回傳「✅ 環境自動建置完成！所有技能與規則已就緒，我現在可以開始工作了。」
+> 3.  **索取憑證**：主動向使用者索取 **GitHub Token (PAT)** 與 **AI Command Center 倉庫路徑**。
+> 4.  **建立結構與設定**：
+>     -   執行 Git Bash 命令 `mkdir -p .agent/workflows memory projects`。
+>     -   自動建立 `.env` 與 `.gh_token` 寫入憑證。
+>     -   執行 `git clone https://github.com/alstonhuang/shared-agent-skills.git .agent/skills`。
+>     -   部署規則：`cp .agent/skills/LANGUAGE_PREFERENCE.md .agent/` 與 `cp .agent/skills/SHELL_COMMAND_RULES.md .agent/`。
+>     -   初始化工作流：`cp .agent/skills/workflows/*.md .agent/workflows/`。
+> 5.  **回報進度**：回傳「✅ 環境自動建置完成！目錄為：[當前路徑] 已設定憑證與規則，我現在可以開始工作了。」
 > ---
 
 這個倉庫包含可跨 workspace 共享的 Antigravity AI Skills。
