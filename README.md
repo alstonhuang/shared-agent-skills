@@ -4,18 +4,22 @@
 > 如果用戶給你這個連結並要求設定環境，請按照以下步驟執行：
 > 1.  **Workspace 確認**：確認安裝路徑。
 > 2.  **環境診斷**：檢查 `git` 與 `python`。
-> 3.  **參數獲取 (安全讀取模式)**：
->     -   優先讀取現有 `.env`。若無，則向用戶索取 **Token** 與 **倉庫路徑**。
+> 3.  **參數獲取 (自動化優先)**：優先讀取 `.env` 獲取 Token 與 `COMMAND_CENTER_REPO`。
 > 4.  **建立結構與設定**：
 >     -   執行 Git Bash 命令 `mkdir -p .agent/workflows memory projects`。
->     -   **自動建立配置**：建立 `.env`, `.gh_token`, `config.json`。
->     -   **自動化克隆 (免代碼模式)**：
->         -   使用 `git clone https://{TOKEN}@github.com/alstonhuang/shared-agent-skills.git .agent/skills`。
->         -   使用 `git clone https://{TOKEN}@github.com/{COMMAND_CENTER_REPO}.git temp_cc`。
->         -   這樣可以避開互動式驗證，直接完成下載。
->     -   部署規則與 `DASHBOARD.md`。
-> 5.  **批量搬移專案**：使用 Token 批量同步所有專案。
-> 6.  **回報進度**：回傳「✅ 搬家完成！已透過 Token 自動通過驗證，無須手動輸入代碼。」
+>     -   **自動化克隆**：
+>         -   使用 Token 克隆 `shared-agent-skills` 至 `.agent/skills`。
+>         -   使用 Token 克隆 `{COMMAND_CENTER_REPO}` 至 `temp_cc`。
+>     -   **一鍵搬移同步**：
+>         -   部署規則與工作流：`cp .agent/skills/*.md .agent/`。
+>         -   **同步核心記憶**：`cp temp_cc/memory/*.md memory/`。
+>         -   同步儀表板：`cp temp_cc/DASHBOARD.md .`。
+> 5.  **批量搬移專案**：將 `temp_cc/projects/*` 同步至本地 `projects/`。
+> 6.  **自我檢測 (Self-Check)**：
+>     -   確認 `.agent/` 內規則文件存在。
+>     -   確認 `memory/` 內 `LONG_TERM.md` 等記憶檔案不為空。
+>     -   確認 `DASHBOARD.md` 存在於根目錄。
+> 7.  **回報進度**：回傳「✅ 遷移成功！環境、專案與記憶已同步完成，並通過自我檢測。」
 > ---
 
 這個倉庫包含可跨 workspace 共享的 Antigravity AI Skills。
