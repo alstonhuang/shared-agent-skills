@@ -5,19 +5,17 @@
 > 1.  **Workspace 確認**：確認安裝路徑。
 > 2.  **環境診斷**：檢查 `git` 與 `python`。
 > 3.  **參數獲取 (安全讀取模式)**：
->     -   檢查是否有 `.env`。
->     -   **⚠️ 安全警告**：禁止執行 `cat .env`。請使用靜默方式（如 `view_file` 或 `grep` 檢查）讀取 `GITHUB_TOKEN` 與 `COMMAND_CENTER_REPO`。
->     -   確保讀取到的密鑰不會被 `echo` 或印出到對話記錄/終端機日誌中。
+>     -   優先讀取現有 `.env`。若無，則向用戶索取 **Token** 與 **倉庫路徑**。
 > 4.  **建立結構與設定**：
 >     -   執行 Git Bash 命令 `mkdir -p .agent/workflows memory projects`。
->     -   **自動建立配置**：
->         -   建立 `.env` 寫入 credentials (若不存在)。
->         -   建立 `.gh_token` 同步寫入憑證。
->         -   建立 `config.json` 寫入專案索引。
->     -   執行 `git clone https://github.com/alstonhuang/shared-agent-skills.git .agent/skills`。
->     -   拉取 `DASHBOARD.md` 並部署規則。
-> 5.  **批量搬移專案**：讀取 `DASHBOARD.md`，自動同步所有專案。
-> 6.  **回報進度**：回傳「✅ 環境已設定完畢。所有憑證已安全就緒，專案已自動拉回。」
+>     -   **自動建立配置**：建立 `.env`, `.gh_token`, `config.json`。
+>     -   **自動化克隆 (免代碼模式)**：
+>         -   使用 `git clone https://{TOKEN}@github.com/alstonhuang/shared-agent-skills.git .agent/skills`。
+>         -   使用 `git clone https://{TOKEN}@github.com/{COMMAND_CENTER_REPO}.git temp_cc`。
+>         -   這樣可以避開互動式驗證，直接完成下載。
+>     -   部署規則與 `DASHBOARD.md`。
+> 5.  **批量搬移專案**：使用 Token 批量同步所有專案。
+> 6.  **回報進度**：回傳「✅ 搬家完成！已透過 Token 自動通過驗證，無須手動輸入代碼。」
 > ---
 
 這個倉庫包含可跨 workspace 共享的 Antigravity AI Skills。
