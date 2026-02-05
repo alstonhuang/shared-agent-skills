@@ -4,18 +4,20 @@
 > 如果用戶給你這個連結並要求設定環境，請按照以下步驟執行：
 > 1.  **Workspace 確認**：確認安裝路徑。
 > 2.  **環境診斷**：檢查 `git` 與 `python`。
-> 3.  **參數獲取 (自動優先)**：
->     -   首先檢查當前目錄是否有 `.env` 或 `config.json`。
->     -   讀取憑證與倉庫路徑；若無，則向用戶索取。
+> 3.  **參數獲取 (安全讀取模式)**：
+>     -   檢查是否有 `.env`。
+>     -   **⚠️ 安全警告**：禁止執行 `cat .env`。請使用靜默方式（如 `view_file` 或 `grep` 檢查）讀取 `GITHUB_TOKEN` 與 `COMMAND_CENTER_REPO`。
+>     -   確保讀取到的密鑰不會被 `echo` 或印出到對話記錄/終端機日誌中。
 > 4.  **建立結構與設定**：
 >     -   執行 Git Bash 命令 `mkdir -p .agent/workflows memory projects`。
 >     -   **自動建立配置**：
->         -   建立 `.env` 寫入 `GITHUB_TOKEN` 與 `COMMAND_CENTER_REPO`。
->         -   建立 `config.json` 寫入 `{"github_repo": "{REPO}", "timezone": "Asia/Taipei"}`。
+>         -   建立 `.env` 寫入 credentials (若不存在)。
+>         -   建立 `.gh_token` 同步寫入憑證。
+>         -   建立 `config.json` 寫入專案索引。
 >     -   執行 `git clone https://github.com/alstonhuang/shared-agent-skills.git .agent/skills`。
->     -   依據倉庫路徑拉取並部署 `DASHBOARD.md` 與規則檔案。
+>     -   拉取 `DASHBOARD.md` 並部署規則。
 > 5.  **批量搬移專案**：讀取 `DASHBOARD.md`，自動同步所有專案。
-> 6.  **回報進度**：回傳「✅ 環境已依據配置完成設定。本地 config.json 與 .env 已備齊，所有專案已拉回。」
+> 6.  **回報進度**：回傳「✅ 環境已設定完畢。所有憑證已安全就緒，專案已自動拉回。」
 > ---
 
 這個倉庫包含可跨 workspace 共享的 Antigravity AI Skills。
