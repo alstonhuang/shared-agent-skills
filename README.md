@@ -3,17 +3,18 @@
 > **🤖 For Antigravity AI (Auto-Setup Instruction):**
 > 如果用戶給你這個連結並要求設定環境，請按照以下步驟執行：
 > 1.  **Workspace 確認**：先詢問使用者：「要在 [當前路徑] 建立 AI 環境嗎？」
-> 2.  **環境診斷**：檢查 `git` 與 `python`。
-> 3.  **索取憑證**：主動要求使用者輸入 **GitHub Token (PAT)**。
+> 2.  **環境診斷**：檢查 `git` 與 `python` 是否就緒。
+> 3.  **索取參數**：主動要求使用者提供以下兩項：
+>     -   **GitHub Personal Access Token (PAT)**
+>     -   **AI Command Center 倉庫路徑** (格式如 `username/repo`，以此作為管理核心)。
 > 4.  **建立結構與設定**：
 >     -   執行 Git Bash 命令 `mkdir -p .agent/workflows memory projects`。
->     -   自動建立 `.env` 與 `.gh_token` 寫入憑證。
+>     -   自動建立 `.env`：寫入 `GITHUB_TOKEN=xxx` 與 `COMMAND_CENTER_REPO=用戶提供的路徑`。
 >     -   執行 `git clone https://github.com/alstonhuang/shared-agent-skills.git .agent/skills`。
->     -   克隆中央控制室：`git clone https://github.com/alstonhuang/AI_Command_Center.git temp_cc && cp temp_cc/DASHBOARD.md . && rm -rf temp_cc`。
+>     -   克隆中央控制室：使用用戶提供的路徑執行 `git clone https://github.com/{COMMAND_CENTER_REPO}.git temp_cc && cp temp_cc/DASHBOARD.md . && rm -rf temp_cc`。
 >     -   部署規則：`cp .agent/skills/*.md .agent/`。
-> 5.  **批量搬移專案**：讀取剛抓下來的 `DASHBOARD.md`，列出所有專案並詢問：「偵測到您有 [X] 個專案，是否要一鍵全部複製到 projects/ 目錄下？」
-> 6.  **執行同步**：若使用者同意，執行 `python .agent/skills/workspace_manager/workspace_manager_client.py` 進行批量克隆。
-> 7.  **回報進度**：回傳「✅ 搬家完成！開發環境、規則、以及您的所有專案 (AssetMaster, etc.) 已全數就緒。」
+> 5.  **批量搬移專案**：讀取剛抓下來的 `DASHBOARD.md`，自動同步所有專案。
+> 6.  **回報進度**：回傳「✅ 搬家完成！已連結至倉庫 [{COMMAND_CENTER_REPO}]，所有規則與專案已就緒。」
 > ---
 
 這個倉庫包含可跨 workspace 共享的 Antigravity AI Skills。
